@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*DOM é a representação do meu HTML, como uma árvore de objetos que o navegador criar na memória. Exemplo, no html está na estrutura que eu fiz, mas o navegador vai transformar em uma estrutura interna, que é a estrutura DOM
+    como exemplo, o DOM permite que linguagens principalmente Js leiam e modifiquem a página*/
+}
+
+body {
+    background-color: #06141B;
+    display: flex; /*o padrão de flex do display: flex, é row (linha)*/
+    justify-content: center;
+    flex-direction: column; /*sem o flex-direction: column, os elementos filhos ligados direto no body, vão se alinhar em linha, pois é o padrão do flex.*/
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.menu { /*nesse main vai conter minha navbar, então aqui já digo qual vai ser a largura do ambiente onde os elementos da navbar vão ficar, assim como outroa estilizações*/
+    margin-top: 15px;
+    padding-inline: 1rem; /*o padding-inline faz com que o espaçamento aconteça somente na direita e esquerda do elemento*/
+    background-color: #11212D;
+    border-radius: 18px;
+    top: 5px; /*para o position sticky funcionar, eu tenho que definir a posição de travamento, no caso o top */
+    position: sticky;
+    z-index: 2; /*faço com que elementos com hover, não sobreponham no menu, sem ele, quando passo o mouse em um elemento com hover,ou dependendo de onde o usuário estiver na página ou qual dispositivo ele estiver usando, o elemento vai ficar acima do meu menu*/
+}
+
+.navbar { /*apliquei o display flex no nosso navbar, por que como eu quero movimentar as tags <a>, seria o correto, pois o elemento pai delas é o navbar*/
+    display: flex; /*lembrando, o display flex no permite organizar seus filhos automaticamente em linhas e colunas, espaçamentos e distruibuição de espaço*/
+    justify-content: flex-end;
+    gap: 10px; /*o gap é uma alternativa mais moderna para criar espaçamentos iguais entre os elementos*/
+}
+
+.menu a {
+    font-weight: 400;
+    background-color: #253745;
+    border-radius: 18px;
+    padding: 6px 24px;
+    margin: 15px 0px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.05;
+}
+
+.menu a:hover{
+    transform: scale(1.1);
+    background-color: #4A5C6A;
+}
+
+.navbar .space-right {
+    margin-right: 10px;
+}
+
+.main {
+    display: flex;
+}
+
+.about-me {
+    flex: 1; /*aqui estou dizendo que o meu section vai ocupar 50% do tamanho do elemento pai, no caso, nosso main. como não defini largura e nem altura, e as divs são do tipo block, logo elas ocupam uma linha inteira, ou seja, nosso main, ocupa 100% do nosso body, ou melhor, a largura do main é do tipo auto.*/
+    color: #fff;
+    margin: 50px 0px 0px 10px;
+    padding: 25px;
+    border-radius: 16px;
+    font-weight: 500; /*espessura das letras*/
+    letter-spacing: 1px; /*espaçamento entre as letras*/
+    display: flex;
+    gap: 80px; /*criei um espaçamento entre meus elementos filhos direto do about-me, no caso a imagem e o bloco de texto */
+    align-items: center;
+}
+
+
+.about-me .name {
+    font-style: italic;
+    text-decoration: underline; /*adiciono um underline*/
+}
+
+.about-me h1 {
+    text-transform: uppercase; /*faço com que o h1 fique maiúsculo*/
+}
+
+.about-me .important {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.about-me .linkedin {
+    text-decoration: none; /*retiro a estilização que vem por padrão no link*/
+}
+
+.my-description {
+    margin-bottom: 15px;
+}
+
+/*Removendo cor roxa de quando o link é visitado*/
+a.linkedin:link, /*Aqui eu estou dizendo o seguinte, só aplique esse estilo se for uma tag <a> com essa classe (linkedin). O 'link' é um condição de que o link esteja no estado de link normal (não visitado), Já o visited, é o oposto, que é quando o link ja foi visitado (clicado antes), ou seja, todo link com a classe linkedin, sendo visitado ou não, vai ter a cor branca*/
+a.linkedin:visited {
+    color: #fff;
+}
+
+.img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+
+.languages { /*antes meu .languages era apenas um item flex, para que eu possa mover os itens dele, ou seja, seus filhos, eu tenho que colocar o display-flex nele*/
+    flex: 1; /*aqui eu defino que meu elemento pode crescer e ocupar espaço disponível igualmente com os outros itens flex, exemplo: no meu main eu coloquei dentro do about-me um flex 1:, e um flex: 1 no meu languages, com isso, eles vão ocupar o mesmo espaço (50% cada), se fosse três itens com flex: 1, seria (33% cada), mas se eu mudar para flex: 2 no about-me, ele vai ficar com duas vezes mais espaço do que o languages que está com flex: 1. Em resumo, flex: 1 divide espaço igualmente, flex: 2, ocupar o dobro, e flex: 0, não cresce*/
+    display: flex;
+    flex-direction: column; /*nossa div languages, engloba a nossa div icons, e ao dizer que minha .languages está com direcionamento como coluna, faz com que os filho direto dela, se comportem em coluna, pois isso os icones da div icons, foi para baixo do meu h2 que faz parte do .languages diretamente*/
+    align-items: center; /*como está com flex-direction column, mudou o eixo principal, então agora o align-items está alinhando na horizontal, todo o conteúdo que esta dentro de languages*/
+    width: 300px;
+    margin: auto;
+    color: #fff;
+/* Um ponto importante a ser observado, por padrão o display flex é row (linha), mas quando eu determino um flex-direction: column, eu mudo o eixo, para flex row, o justify-content: move os elemento horizontalmente e align-items verticalmente, mas quando eu mudo o eixo principal para coluna, o justify passa a mover os itens verticalmente e align horizontalmente */
+}
+
+
+.icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.icon { /*essa é a div que está em cada linguagem, ou seja, essas regras abaixo vão se aplicar para cada imagem*/
+    background-color: #11212D ;
+    padding: 30px;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icon img {
+    width: 50px; /*defino que a largura dos icones é de 50px*/
+    transition: 0.3s;
+}
+
+.icon:hover {
+    transform: scale(1.1);   
+}
+
+.icon img:hover {
+    rotate: 360deg;
+}
+
+.me-projects {
+    display: flex; /*agora meu me-project é uma container flex, fazendo com que seus filhos diretos, sejam items flex*/
+    flex-direction: column; /*altero o eixo principal, por isso o align-items está alinhando na horizontal*/
+    align-items: center; /*agora todos os filhos diretos dele, vão ser alinhados horizontalmente*/
+    margin-top: 4rem; /*defino uma margin top de 4rem = 4 x 16 = 64px*/
+    color: #fff;
+}
+
+.me-projects h2{
+    margin-bottom: 2rem; /*adiciono uma margin bottom de 2rem = 32px*/
+    letter-spacing: 1px;
+}
+
+.cards {
+    display: flex; /*faço com que os cards fiquem na mesma linha*/
+    flex-wrap: wrap;
+    gap: 2rem; /*E adiciono um espaço entre eles em 50px*/
+}
+
+.project { /*dentro da minha div .card, existe quatro divs que começa com o nome project, logo, todas esssas quatro seram estilizadas pelas regras abaixo. Por que no HTML, cada div recebeu mais de uma classe, como quero afetar todaas, uso o project, que consta em todas as div, se eu quisesse afetar individualmente, chamaria a segunda classe, one, two...*/
+    display: flex;
+    justify-content: center;
+    background-color: #11212D;
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    border-radius: 12px;
+    letter-spacing: 1px;
+    box-shadow: 5px 5px 15px 5px #000000;
+    transition: 0.3s;
+    /* antes eu não estava conseguindo usar o justify e nem o align por que não tinha espaço dentro do container */
+}
+
+.project:hover {
+    transform: scale(1.1);
+    
+}
+
+.rodape {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 4rem;
+    background-color: #11212D;
+    color: #fff;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ .contact h2 {
+    margin: 15px auto;
+}   
+
+.rodape P {
+    text-align: center;
+}
+
+.rodape p {
+    width: 100%;
+}
+
+.social {
+    display: flex;
+}
+
+.rodape .logo {
+    margin: 10px ;
+    width: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.rodape .logo:hover {
+    transform: scale(1.1);
+}
+
+.email{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
